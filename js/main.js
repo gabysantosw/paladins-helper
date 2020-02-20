@@ -11,8 +11,16 @@ new Vue({
     url: './js/champions.json',
     currentType: null
   },
+  computed: {
+    isSelectionComplete() {
+      console.log('isSelectionComplete');
+      if (this.selectedChampions.length === 5) return true;
+      return false;
+    }
+  },
   methods: {
     handleType(position) {
+      console.log('handleType');
       if (position !== this.currentType) {
         this.currentType = position;
         return true;
@@ -20,6 +28,7 @@ new Vue({
       return false;
     },
     handleSelection(id) {
+      console.log('handleSelection');
       if (this.selectedChampions.includes(id)) {
         // unselect
         this.selectedChampions.splice(this.selectedChampions.indexOf(id), 1)
@@ -27,13 +36,9 @@ new Vue({
         // select
         this.selectedChampions.push(id);
       }
-      
-    },
-    isSelectionComplete() {
-      if (this.selectedChampions.length === 5) return true;
-      return false;
     },
     reset() {
+      console.log('reset');
       currentType = null;
       selectedChampions = [];
     }
