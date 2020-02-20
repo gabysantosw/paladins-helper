@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Astral Help</title>
+
+  <link rel="stylesheet" href="./css/main.min.css">
+  <script defer src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+  <script defer src="./js/main.js"></script>
+</head>
+<body>
+  <div id="app" class="wrapper">
+    <header class="header">
+      <button class="header__logo" @click="reset()">Astral Help</button>
+  
+      <h2 class="header__title" v-if="!isSelectionComplete()">
+        SELECT OPONENTS
+      </h2>
+      <h2 class="header__title" v-else>
+        RESULTS
+      </h2>
+    </header>
+    <section class="info" v-if="!isSelectionComplete()">
+      <p class="info__paragraph">
+        Select your oponents' champions to show the type of damage each inflicts. 
+      </p>
+  
+      <div class="info__counter">
+        {{ selectedChampions.length }}/5
+      </div>
+    </section>
+    <section class="selection" v-if="!isSelectionComplete()">
+      <div class="selection__champions">
+        <template v-for="champion in champions">
+          <h3 class="selection__heading" v-if="handleType(champion.position)">
+            {{ champion.position }}
+          </h3>
+          <button class="champion champion--button" @click="handleSelection(champion.id)" :class={'--selected':selectedChampions.includes(champion.id)}>
+            <img :src="champion.url" alt="" class="champion__image champion__image--default">
+            <img :src="champion.url" alt="" class="champion__image champion__image--hover">
+            <span class="champion__name">{{ champion.name }}</span>
+          </button>
+        </template>
+      </div>
+    </section>
+    <section class="results" v-if="isSelectionComplete()">
+      <table class="results__table">
+        <tr class="results__header">
+          <th class="">Champion</th>
+          <th class="">Weapon</th>
+          <th class="">Skills</th>
+          <th class="">Ultimate</th>
+        </tr>
+        <tr class="" v-for="champion in champions" v-if="selectedChampions.includes(champion.id)">
+          <td class="champion champion--result">
+            <img :src="champion.url" alt="" class="champion__image">
+            <span class="champion__name">{{ champion.name }}</span>
+          </td>
+          <td class="results__damage">
+            {{ champion.weapon }}
+          </td>
+          <td class="results__damage">
+            {{ champion.skills }}
+          </td>
+          <td class="results__damage">
+            {{ champion.ultimate }}
+          </td>
+        </tr>
+      </table>
+    </section>
+  </div>
+</body>
+</html>
