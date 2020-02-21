@@ -32,8 +32,11 @@
     </section>
     <section class="selection" v-if="!isSelectionComplete">
       <div class="selection__champions">
-        <template v-for="champion in champions">
-          <h3 class="selection__heading" v-if="handleType(champion.position)">
+        <template v-for="(champion, index) in champions">
+          <h3 class="selection__heading" v-if="index === 0">
+            {{ champion.position }}
+          </h3>
+          <h3 class="selection__heading" v-else-if="champions[index].position != champions[index - 1].position">
             {{ champion.position }}
           </h3>
           <button class="champion champion--button" @click="handleSelection(champion.id)" :class={'--selected':selectedChampions.includes(champion.id)}>
