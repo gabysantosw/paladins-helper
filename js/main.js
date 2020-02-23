@@ -8,8 +8,7 @@ new Vue({
   data: {
     champions: null,
     selectedChampions: [],
-    url: './js/champions.json',
-    currentType: null
+    url: './js/champions.json'
   },
   computed: {
     isSelectionComplete() {
@@ -18,13 +17,6 @@ new Vue({
     }
   },
   methods: {
-    handleType(position) {
-      if (position !== this.currentType) {
-        this.currentType = position;
-        return true;
-      }
-      return false;
-    },
     handleSelection(id) {
       if (this.selectedChampions.includes(id)) {
         // unselect
@@ -35,8 +27,7 @@ new Vue({
       }
     },
     reset() {
-      currentType = null;
-      selectedChampions = [];
+      this.selectedChampions = [];
     }
   }
 });
