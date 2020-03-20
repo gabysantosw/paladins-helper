@@ -31,7 +31,8 @@
       </div>
     </section>
     <section class="selection" v-if="!isSelectionComplete">
-      <div class="selection__champions">
+      <div class="loader" v-if="isLoading"></div>
+      <div class="selection__champions" v-else>
         <template v-for="(champion, index) in champions">
           <h3 class="selection__heading" v-if="index === 0">
             {{ champion.position }}

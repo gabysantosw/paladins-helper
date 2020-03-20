@@ -154,6 +154,39 @@ body {
 
 }
 
+.loader {
+  margin: 5rem auto 0 auto;
+  width: 5rem;
+  height: 5rem;
+  border-radius: 50%;
+  position: relative;
+  box-shadow: inset 0 0 0 .5rem $light-dark;
+  animation: loading 1000ms infinite linear;
+  
+  &::after {
+    content: '';
+    display: block;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    border: .5rem solid transparent;
+    border-top-color: $accent;
+    box-sizing: border-box;
+  }
+}
+
+@keyframes loading {
+  0% {
+    transform: rotate(0deg)
+  }
+  100% {
+    transform: rotate(360deg)
+  }
+}
+
 ////// --- LAYOUT --- //////
 .wrapper {
   width: $content;

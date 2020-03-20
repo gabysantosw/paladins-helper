@@ -14,6 +14,10 @@ new Vue({
     isSelectionComplete() {
       if (this.selectedChampions.length === 5) return true;
       return false;
+    }, 
+    isLoading() {
+      if (this.champions === null) return true;
+      return false;
     }
   },
   methods: {
